@@ -12,7 +12,7 @@ int partition(int arr[], int low, int high) {
 
     for (int j = low; j <= high - 1; ++j) {
         if (arr[j] < pivot) {
-            i++;
+            ++i;
             swap(&arr[i], &arr[j]);
         }
     }
@@ -25,30 +25,40 @@ void quicksort(int arr[], int low, int high) {
     if (low < high) {
         int pivotIndex = partition(arr, low, high);
 
-        // Recursively sort the elements before and after the pivot
         quicksort(arr, low, pivotIndex - 1);
         quicksort(arr, pivotIndex + 1, high);
     }
 }
 
 void printArray(int arr[], int size) {
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; ++i) {
         printf("%d ", arr[i]);
     }
     printf("\n");
 }
 
 int main() {
-    int arr[] = {12, 11, 10, 5, 6, 9};
-    int size = sizeof(arr) / sizeof(arr[0]);
+    int n;
+
+    // Get the size of the array from the user
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    int arr[n];  // Declare an array of size n
+
+    // Get array elements from the user
+    printf("Enter the elements:\n");
+    for (int i = 0; i < n; ++i) {
+        scanf("%d", &arr[i]);
+    }
 
     printf("Unsorted array: ");
-    printArray(arr, size);
+    printArray(arr, n);
 
-    quicksort(arr, 0, size - 1);
+    quicksort(arr, 0, n - 1);
 
     printf("Sorted array: ");
-    printArray(arr, size);
+    printArray(arr, n);
 
     return 0;
 }
